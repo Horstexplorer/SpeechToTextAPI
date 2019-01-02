@@ -32,6 +32,14 @@ class Config {
             prop.setProperty("stt_dictionary","dictonary.dic");
             prop.setProperty("stt_languagemodel","languagemodel.lm");
 
+            prop.setProperty("auth_testmode","true");
+            prop.setProperty("auth_sqlserver","127.0.0.1");
+            prop.setProperty("auth_sqlserverport","3306");
+            prop.setProperty("auth_sqluser","api_auth");
+            prop.setProperty("auth_password","password");
+            prop.setProperty("auth_sqldb","api_auth");
+            prop.setProperty("auth_sqltable","xsttapi_auth");
+
             prop.store(new FileOutputStream("sys.config"), null);
         }catch(Exception e) {
             System.err.println("[ERROR] "+e);
@@ -59,7 +67,7 @@ class Config {
 
     String version() { //should be a file in jar, mb later
         String vers= "1.0.0.1";
-        String build = "001685";
+        String build = "002853";
         String release = "a";
         return vers+"-"+build+"_"+release;
     }

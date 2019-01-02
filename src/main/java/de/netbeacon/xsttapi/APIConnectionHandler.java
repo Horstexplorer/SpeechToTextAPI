@@ -50,8 +50,14 @@ class APIConnectionHandler implements Runnable {
                         String pass = userpass.substring(userpass.indexOf(":")); //part after :
 
                         //Authentificator
-                        APIAuth apiauth = new APIAuth();
-                        authaccepted = apiauth.authenticate(username, pass);
+                        if (!username.isEmpty() && !pass.isEmpty()){
+                            if (!Boolean.parseBoolean(config.load("auth_testmode"))){
+                                APIAuth apiauth = new APIAuth();
+                                authaccepted = apiauth.authenticate(username, pass);
+                            }else{
+                                authaccepted = true;
+                            }
+                        }
 
                         if(authaccepted){
                             authorized = true;
@@ -117,8 +123,8 @@ class APIConnectionHandler implements Runnable {
                     String tfs = " ";
                     //Wörk :D
 
-                    STT stt = new STT(username,filename);
-                    tfs = stt.speechtotext();
+                    //STT stt = new STT(username,filename);
+                    //tfs = stt.speechtotext();
 
                     //send response
                     output(out,"HTTP/2 200 OK\r\n","{\"status\":\"200\",\"info\":\"OK\",\"tfs\":\""+tfs+"\"}");

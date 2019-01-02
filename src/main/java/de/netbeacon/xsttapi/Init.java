@@ -17,7 +17,7 @@ public class Init {
         }
         System.out.println("-------------------------------------------------------------------------------------------");
 
-        if(Boolean.parseBoolean(config.load("activated")) && !error){
+        if(Boolean.parseBoolean(config.load("activated")) && error){
             System.out.println("[INFO] OK");
             //Socket
             Thread api = new Thread(new APISocket());
