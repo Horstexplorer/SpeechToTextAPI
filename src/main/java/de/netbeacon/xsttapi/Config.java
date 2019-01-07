@@ -27,6 +27,7 @@ class Config {
             prop.setProperty("api_port", "9999");
             prop.setProperty("api_maxuploadsize","5000000");
             prop.setProperty("api_defaultstoragelocation","./upload");
+            prop.setProperty("api_maxprocesstime","60");
 
             prop.setProperty("stt_acousticmodelpath","./sttresources");
             prop.setProperty("stt_dictionary","dictonary.dic");

@@ -32,7 +32,7 @@ class APIAuth {
 
         try{
             String myDriver = "org.gjt.mm.mysql.Driver";
-            String myUrl = "jdbc:mysql://"+mysqlserver+":"+mysqlserverport+"/";
+            String myUrl = "jdbc:mysql://"+mysqlserver+":"+mysqlserverport+"/"+mysqldb;
             Class.forName(myDriver);
             Connection conn = DriverManager.getConnection(myUrl, mysqluser, mysqlpassword);
 

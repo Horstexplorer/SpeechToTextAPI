@@ -21,6 +21,7 @@ class APIConnectionHandler implements Runnable {
         String storagepath = defaultstorage+"/unknown/";
         String filename = "unknownuser";
         String username = "unknown";
+        String language = " ";
 
         try{
             //stream
@@ -45,7 +46,7 @@ class APIConnectionHandler implements Runnable {
                     //get the username and password to authorize access
                     if(input.contains("Auth:")){
                         boolean authaccepted = false;
-                        String userpass = input.replace("Auth: ", "").trim();
+                        String userpass = input.replace("Auth:", "").trim();
                         username = userpass.substring(0,userpass.indexOf(":")); //part before :
                         String pass = userpass.substring(userpass.indexOf(":")); //part after :
 
@@ -59,6 +60,10 @@ class APIConnectionHandler implements Runnable {
                             }
                         }
 
+                        //Language
+                        if (input.contains("Language:")){
+                            language = input.replace("Language:", "").trim();
+                        }
                         if(authaccepted){
                             authorized = true;
                             //get dir and file ready
@@ -123,8 +128,8 @@ class APIConnectionHandler implements Runnable {
                     String tfs = " ";
                     //Wörk :D
 
-                    //STT stt = new STT(username,filename);
-                    //tfs = stt.speechtotext();
+                    STT stt = new STT(username,filename, language);
+                    tfs = stt.speechtotext();
 
                     //send response
                     output(out,"HTTP/2 200 OK\r\n","{\"status\":\"200\",\"info\":\"OK\",\"tfs\":\""+tfs+"\"}");
